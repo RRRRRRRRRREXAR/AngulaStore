@@ -8,7 +8,13 @@ import { CartComponent } from './cart/cart.component';
 import { ProductComponentComponent } from './product-component/product-component.component';
 import { CategoryComponentComponent } from './category-component/category-component.component';
 import { HttpClientModule, /* other http imports */ } from "@angular/common/http";
-
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DataSharingService } from './data-sharing.service';
+import { CreateproductComponent } from './createproduct/createproduct.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +23,17 @@ import { HttpClientModule, /* other http imports */ } from "@angular/common/http
     OrderComponent,
     CartComponent,
     ProductComponentComponent,
-    CategoryComponentComponent
+    CategoryComponentComponent,
+    LoginComponent,
+    RegistrationComponent,
+    DashboardComponent,
+    CreateproductComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 export  class CategoryModel {
-    id:number;
-    name:string; 
+    Id:number;
+    Name:string; 
     sessionid:string;
  }

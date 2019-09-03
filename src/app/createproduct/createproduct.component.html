@@ -1,22 +1,32 @@
 <div class="row" style="margin-top:2em">
-    <div class="col-md-4 offset-md-4">
-            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-3 offset-md-4">
+            <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label class=" control-label">Email</label>
-                    <input type="email" class="form-control" formControlName="Email">
+                    <label class=" control-label">Name</label>
+                    <input type="text" class="form-control" formControlName="Name">
                 </div>
                 <div class="form-group">
-                    <label class=" control-label">Password</label>
-                    <input type="password" class="form-control" formControlName="Password">
+                    <label class=" control-label">Category</label>
+                    <select class="form-control " formControlName="Category" id="Category">
+                        <option *ngFor="let category of categories; let i = index" [value]="categories[i].id">
+                            {{categories[i].name}}
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label class=" control-label">Password</label>
-                    <input type="password" class="form-control" formControlName="ConfirmPassword">
+                    <label class=" control-label">Description</label>
+                    <input type="text" class="form-control" formControlName="Description">
                 </div>
                 <div class="form-group">
-                    <input type="submit" [disabled]="!profileForm.valid" class="form-control" value="submit">
+                    <label class=" control-label">Price</label>
+                    <input type="text" class="form-control" formControlName="Price">
+                </div>
+                <div class="form-group col-md-5 offset-md-3">
+                    <input type="submit" class="form-control" value="submit">
                 </div>
             </form>
     </div>
 </div>
+
+
 

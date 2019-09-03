@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DataSharingService } from './data-sharing.service';
 import { CreateproductComponent } from './createproduct/createproduct.component';
+import { CreatecategoryComponent } from './createcategory/createcategory.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,15 @@ import { CreateproductComponent } from './createproduct/createproduct.component'
     LoginComponent,
     RegistrationComponent,
     DashboardComponent,
-    CreateproductComponent
+    CreateproductComponent,
+    CreatecategoryComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {ProductModel} from './models/productmodel';
 
@@ -17,14 +17,18 @@ export class ProductService {
   remove(id:number){
     return this.http.delete(`${this.PRODUCT_API}/${id.toString()}`);
   }
-  save(product:ProductModel):Observable<ProductModel>{
+  create(product:ProductModel):Observable<ProductModel>{
     let result:Observable<ProductModel>;
-    if(product.Id){
-      result=this.http.put<ProductModel>(this.PRODUCT_API,product);
-    }
-    else{
-      result=this.http.post<ProductModel>(this.PRODUCT_API,product);
-    }
+    let token =JSON.parse(localStorage.getItem("currentUser"));
+    let options = {
+      headers: new HttpHeaders().set('Authorization', 'Bearer '+token.token.access_token)
+  };
+    result=this.http.post<ProductModel>(this.PRODUCT_API,product,options);
+    return result;
+  }
+  edit(product:ProductModel){
+    let result:Observable<ProductModel>;
+    result=this.http.put<ProductModel>(this.PRODUCT_API,product);
     return result;
   }
 }

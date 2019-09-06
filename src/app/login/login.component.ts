@@ -24,10 +24,13 @@ export class LoginComponent implements OnInit {
     this.service.login(obj).subscribe(data=>
       localStorage.setItem('currentUser',JSON.stringify({token:data})));
       this.dataSharingService.isUserLoggedIn.next(true);
-      this.dataSharingService.setCurrentUser=JSON.parse(localStorage.getItem('currentUser'));
       this.router.navigate(['products']);
   }
-
+  getErrorMessage() {
+    return this.profileForm.hasError('required') ? 'You must enter a value' :
+        this.profileForm.hasError('email') ? 'Not a valid email' :
+            '';
+  }
   ngOnInit() {
   }
 

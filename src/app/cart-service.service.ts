@@ -11,17 +11,27 @@ export class CartServiceService {
   public CART_API =`${this.API}/Cart`;
   constructor(private http:HttpClient) { }
   getAll():Observable<Array<ProductModel>>{
-    return this.http.get<Array<ProductModel>>(this.CART_API);
+    let params = new HttpParams()
+    .set('token', localStorage.getItem("cartToken"));
+    return this.http.get<Array<ProductModel>>(this.CART_API,{params:params});
+  }
+  getCartToken():Observable<string>{
+    let result = new Observable<string>();
+    result=this.http.get<string>(this.CART_API);
+    return result
   }
   removeItem(id:number){
     let result:Observable<any>;
     let params = new HttpParams()
     .set('id',id.toString() )
-    .set('token', sessionStorage.getItem["token"]);
-    result=this.http.delete(`${this.CART_API}/`,{params:params});
+    .set('token', localStorage.getItem("cartToken"));
+    result=this.http.delete(`${this.CART_API}`,{params:params});
     return result;
   }
   addItem(id:number){
-    return this.http.post(`${this.CART_API}/${id.toString()}`,id);
+    let result:Observable<any>;
+    let body2 = {Id:id,Token:localStorage.getItem("cartToken")};
+    result=this.http.post(`${this.CART_API}`,body2);
+    return result;
   }
 }

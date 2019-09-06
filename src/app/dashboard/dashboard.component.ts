@@ -2,6 +2,10 @@ import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { DataSharingService } from '../data-sharing.service';
 import { UserModel } from '../models/usermodel';
 import { AuthorizeService } from '../authorize.service';
+import { TokenModel } from '../models/token';
+import { MatDialog } from '@angular/material/dialog';
+import { CartComponent } from '../cart/cart.component';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,16 +16,14 @@ export class DashboardComponent implements OnInit {
 
   isUserLoggedIn:boolean;
   currentUser:any;
-  constructor(private dataSharingService:DataSharingService,private authirizeService:AuthorizeService) {
+  constructor(private dataSharingService:DataSharingService,private authirizeService:AuthorizeService,public dialog: MatDialog) {
 
-     this.dataSharingService.currentUser.subscribe(value=>{
-       
-    this.currentUser=value;
-    });
-    
     this.dataSharingService.isUserLoggedIn.subscribe(value=>{
-      this.isUserLoggedIn=value;}
-      )
+      
+      this.isUserLoggedIn=value;
+      
+      
+    });
 
   }
   logOut(){
@@ -30,5 +32,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.currentUser=this.dataSharingService.currentUser;
   }
-  
+  openCart():void{
+    const dialogRef = this.dialog.open(CartComponent, {
+      width: '50em',
+      
+    });
+    
+  }
 }

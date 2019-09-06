@@ -1,17 +1,16 @@
-<div class="row" style="margin-top:2em">
-    <div class="col-md-4 offset-md-4">
-            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label class=" control-label">Email</label>
-                    <input type="email" class="form-control" formControlName="username">
-                </div>
-                <div class="form-group">
-                    <label class=" control-label">Password</label>
-                    <input type="password" class="form-control" formControlName="password">
-                </div>
-                <div class="form-group">
-                    <input type="submit" [disabled]="!profileForm.valid" class="form-control" value="submit">
-                </div>
-            </form>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="example-container" >
+        <mat-form-field>
+            <input matInput formControlName="username" placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" formControlName="password" placeholder="Password">
+        </mat-form-field>
+        
+            <button  mat-button>Submit</button>
     </div>
-</div>
+</form>
+
+      
+      
